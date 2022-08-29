@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 int tilesPerRow = 4;
 
-const Color primaryColor = Colors.black;
-const Color secondaryColor = Color(0xFFA9CCE3);
-const Color primaryTextColor = Colors.red;
-const Color errorColor = Colors.red;
+Color primaryColor = Colors.black;
+Color secondaryColor = Color(0xFFA9CCE3);
+Color primaryTextColor = Colors.red;
+Color errorColor = Colors.red;
 
 const double head1 = 36;
 const double head2 = 32;

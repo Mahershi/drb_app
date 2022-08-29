@@ -1,6 +1,7 @@
 import 'package:drb/utilities/constants.dart';
 import 'package:drb/view/components/side_nav.dart';
 import 'package:drb/view/screens/CategoryBody.dart';
+import 'package:drb/view/screens/ItemsScreen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatefulWidget{
@@ -27,7 +28,8 @@ class PageState extends State<CategoryScreen>{
             width: MediaQuery.of(context).size.width * navFraction,
             child: SideNav(),
           ),
-          CategoryBodyScreen()
+          // CategoryBodyScreen(),
+          ItemsScreen()
         ],
       ),
     );

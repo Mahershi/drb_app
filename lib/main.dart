@@ -1,7 +1,12 @@
 import 'package:drb/utilities/route_generator.dart';
 import 'package:flutter/material.dart';
 
+import 'app_config.dart';
+import 'network/rest_service.dart';
+
 void main(){
+  setUpConfiguration();
+  RestService.init();
   runApp(DRB());
 }
 
@@ -11,7 +16,11 @@ class DRB extends StatelessWidget{
     return MaterialApp(
       onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false,
-      initialRoute: '/HomeScreen',
+      initialRoute: '/SplashScreen',
     );
   }
+}
+
+void setUpConfiguration() {
+  AppConfig.setEnvironment(Environment.DEVELOPMENT);
 }

@@ -1,4 +1,5 @@
 import 'package:drb/utilities/constants.dart';
+import 'package:drb/utilities/scripts.dart';
 import 'package:flutter/material.dart';
 
 class SubmitButton extends StatelessWidget{
@@ -6,8 +7,8 @@ class SubmitButton extends StatelessWidget{
     required this.onPress,
     required this.width,
     required this.height,
-    this.labelColor = primaryTextColor,
-    this.backgroundColor = primaryColor
+    required this.labelColor,
+    required this.backgroundColor,
   });
 
   Function onPress;

@@ -115,7 +115,10 @@ class PageState extends State<LoginScreen>{
                           label: 'Sign In',
                           onPress: (){print("Tapped");},
                           width: MediaQuery.of(context).size.width * 0.33,
-                          height: 20)
+                          height: 20,
+                          backgroundColor: primaryColor,
+                          labelColor: primaryTextColor,
+                      )
                     ],
                   ),
                 ),

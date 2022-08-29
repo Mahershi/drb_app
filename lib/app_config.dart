@@ -34,12 +34,12 @@ class AppConfig {
 class _Config {
 
   static const version = "1.0.0";
-  static const api = 'app/';
-  static const baseUrl = "http://192.168.1.200:8000/";
+  static const api = 'app';
+  static const baseUrl = "http://172.16.1.102:9999/";
 
   static Config empty = Config(
       environment: 'development',
-      baseUrl: baseUrl,
+      baseUrl: '',
   );
 
   static Config development = Config(
