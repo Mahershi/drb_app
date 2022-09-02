@@ -18,3 +18,7 @@ Future<dynamic> fetchParameters() async{
     auth: false
   );
 }
+
+Future<dynamic> fetchDiscounts() async{
+  return RestService.request(endpoint: API.discount, auth: false);
+}

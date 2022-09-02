@@ -32,6 +32,10 @@ class SplashScreenController extends ControllerMVC{
       for(var inst in data){
         GlobalVars.stores!.add(Store.fromJson(jsonMap: inst));
       }
+      if(GlobalVars.stores!.isNotEmpty){
+        GlobalVars.currentStore = GlobalVars.stores!.first;
+      }
+
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:drb/utilities/global_vars.dart';
 import 'package:drb/view/components/custom_spacer.dart';
 import 'package:drb/view/components/icon_buttons.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +20,9 @@ class PageState extends State<CustomAppBar2>{
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "DRB",
+            GlobalVars.currentStore!.name!,
             style: font.merge(TextStyle(
-                fontSize: head1
+                fontSize: head2
             )),
           ),
           Row(

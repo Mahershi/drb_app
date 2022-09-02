@@ -18,7 +18,8 @@ class SubCatHeading extends StatelessWidget{
           Text(
             title,
             style: font.merge(TextStyle(
-              fontSize: head4
+              fontSize: head4,
+              fontWeight: FontWeight.w900
             )),
           ),
           InkWell(

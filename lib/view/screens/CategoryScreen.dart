@@ -5,12 +5,29 @@ import 'package:drb/view/screens/ItemsScreen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatefulWidget{
+  CategoryScreen({required this.currentCatId});
 
+  String currentCatId;
   @override
   PageState createState() => PageState();
 }
 
 class PageState extends State<CategoryScreen>{
+  @override
+  void initState(){
+    super.initState();
+    print("Again");
+  }
+  
+  // @override
+  // void didUpdateWidget(CategoryScreen oldWidget){
+  //   super.didUpdateWidget(oldWidget);
+  //   print("did update m");
+  //   if(oldWidget.currentCatId != widget.currentCatId){
+  //     print("diff m");
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context){
     return Container(
@@ -26,10 +43,10 @@ class PageState extends State<CategoryScreen>{
               color: secondaryColor
             ),
             width: MediaQuery.of(context).size.width * navFraction,
-            child: SideNav(),
+            child: SideNav(currentCatId: widget.currentCatId,),
           ),
-          // CategoryBodyScreen(),
-          ItemsScreen()
+          CategoryBodyScreen(currentCatId: widget.currentCatId,),
+          // ItemsScreen()
         ],
       ),
     );

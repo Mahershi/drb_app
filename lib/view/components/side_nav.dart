@@ -1,37 +1,43 @@
 import 'package:drb/utilities/constants.dart';
+import 'package:drb/utilities/global_vars.dart';
 import 'package:flutter/material.dart';
 
 class SideNav extends StatefulWidget{
+  SideNav({required this.currentCatId});
 
+  String currentCatId;
   @override
   PageState createState() => PageState();
 }
 
 class PageState extends State<SideNav>{
-  List<String> cats = ['Disposables', 'Pods', 'eJuice', 'Coild', 'Devices', 'Accessories', 'Misc', 'a', 'b', 'c', 'd'];
-  int current = 0;
   @override
   Widget build(BuildContext context){
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
-        children: cats.map((element){
-          return Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            padding: ei20,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: current == cats.indexOf(element) ? radius20 : Radius.circular(0),
-                bottomLeft: current == cats.indexOf(element) ? radius20 : Radius.circular(0),
+        children: GlobalVars.categories!.map((element){
+          return InkWell(
+            onTap: (){
+              GlobalVars.hsCon!.switchPage(page: 1, args: element.id);
+            },
+            child: Container(
+              margin: EdgeInsets.symmetric(vertical: 10),
+              padding: ei20,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topLeft: widget.currentCatId == element.id ? radius20 : Radius.circular(0),
+                  bottomLeft: widget.currentCatId == element.id ? radius20 : Radius.circular(0),
+                ),
+                color: widget.currentCatId == element.id ? Colors.white : Colors.transparent,
               ),
-              color: current == cats.indexOf(element) ? Colors.white : Colors.transparent,
+              child: Text(
+                element.category!,
+                style: font.merge(TextStyle(
+                  fontSize: body1
+                )),
+              )
             ),
-            child: Text(
-              element,
-              style: font.merge(TextStyle(
-                fontSize: body1
-              )),
-            )
           );
         }).toList(),
       ),

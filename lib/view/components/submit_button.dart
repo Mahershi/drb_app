@@ -21,7 +21,9 @@ class SubmitButton extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return GestureDetector(
-      onTap: ()=>onPress,
+      onTap: (){
+        onPress();
+      },
       child: Container(
         padding: ei24,
         decoration: BoxDecoration(

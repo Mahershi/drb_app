@@ -1,8 +1,12 @@
+import 'package:drb/controllers/login_controller.dart';
 import 'package:drb/utilities/constants.dart';
+import 'package:drb/utilities/global_vars.dart';
 import 'package:drb/view/components/custom_spacer.dart';
 import 'package:drb/view/components/submit_button.dart';
 import 'package:flutter/material.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
 
+import '../../models/store_model.dart';
 import '../components/app_bar.dart';
 
 class LoginScreen extends StatefulWidget{
@@ -10,18 +14,16 @@ class LoginScreen extends StatefulWidget{
   PageState createState() => PageState();
 }
 
-class PageState extends State<LoginScreen>{
-  TextEditingController username = TextEditingController();
-  TextEditingController password = TextEditingController();
-  List<String> stores = [
-    'Brandee\'s',
-    'DRB - EAST',
-    'DRB - NORTH'
-  ];
-  String currentStore = 'Brandee\'s';
+class PageState extends StateMVC<LoginScreen>{
+  LoginController? con;
+
+  PageState() : super(LoginController()){
+    con = controller as LoginController;
+  }
+
+
   @override
   Widget build(BuildContext buildContext){
-    print("Login screen");
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -43,13 +45,19 @@ class PageState extends State<LoginScreen>{
                   borderRadius: borderRadius20
                 ),
                 child: Form(
+                  key: con!.formKey,
                   child: Column(
                     children: [
                       Container(
                         width: MediaQuery.of(context).size.width * 0.33,
                         child: TextFormField(
-                          controller: username,
-
+                          controller: con!.username,
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return "Username Required";
+                            }
+                            return null;
+                          },
                           decoration: InputDecoration(
                             hintText: 'User',
                             enabledBorder: OutlineInputBorder(
@@ -71,7 +79,13 @@ class PageState extends State<LoginScreen>{
                       Container(
                         width: MediaQuery.of(context).size.width * 0.33,
                         child: TextFormField(
-                          controller: password,
+                          validator: (value){
+                            if(value!.isEmpty){
+                              return "Password Required";
+                            }
+                            return null;
+                          },
+                          controller: con!.password,
                           decoration: InputDecoration(
                             hintText: 'Password',
                             enabledBorder: OutlineInputBorder(
@@ -92,16 +106,17 @@ class PageState extends State<LoginScreen>{
                       CustomSpacer(height: 20,),
                       DropdownButton(
                         onChanged: (value){
-                          currentStore = value as String;
+                          GlobalVars.currentStore = value as Store;
+                          print("Store: " + GlobalVars.currentStore!.name!);
                           setState((){});
                         },
-                        value: currentStore,
-                        items: stores.map((value){
+                        value: GlobalVars.currentStore,
+                        items: GlobalVars.stores!.map((value){
                           return DropdownMenuItem(
                             child: Container(
                               padding: ei12,
                               width: MediaQuery.of(context).size.width * 0.3,
-                              child: Text(value),
+                              child: Text(value.name!),
 
                             ),
                             value: value,
@@ -113,7 +128,14 @@ class PageState extends State<LoginScreen>{
                       CustomSpacer(height: 20,),
                       SubmitButton(
                           label: 'Sign In',
-                          onPress: (){print("Tapped");},
+                          onPress: (){
+                            print("Submit");
+                            if(con!.formKey.currentState!.validate()){
+                              con!.login();
+                            }else{
+                              print("invalide");
+                            }
+                          },
                           width: MediaQuery.of(context).size.width * 0.33,
                           height: 20,
                           backgroundColor: primaryColor,

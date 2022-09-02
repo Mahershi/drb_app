@@ -1,4 +1,5 @@
 import 'package:drb/controllers/splashscreen_controller.dart';
+import 'package:drb/utilities/global_vars.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 

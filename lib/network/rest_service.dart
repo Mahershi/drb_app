@@ -6,7 +6,7 @@ import '../utilities/custom_trace.dart';
 
 class RestService{
   static Dio? dio;
-  static String baseUrl = AppConfig.config.baseUrl;
+  static String baseUrl = AppConfig.config.apiUrl;
 
   static void init(){
     dio = Dio(

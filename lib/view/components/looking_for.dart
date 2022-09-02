@@ -9,7 +9,7 @@ class LookingFor extends StatelessWidget{
       child: Text(
         "Looking for ...",
         style: font.merge(TextStyle(
-          fontSize: head1
+          fontSize: head2
         )),
       )
     );
