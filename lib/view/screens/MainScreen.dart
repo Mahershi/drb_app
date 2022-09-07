@@ -39,7 +39,7 @@ class PageState extends State<MainScreen>{
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         // border: testBorder,
-                          color: primaryTextColor.withOpacity(0.3),
+                          color: secondaryTextColor.withOpacity(0.4),
                           borderRadius: borderRadius20
                       ),
                       child: Text(

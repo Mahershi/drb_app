@@ -1,4 +1,5 @@
 import 'package:drb/view/screens/CategoryScreen.dart';
+import 'package:drb/view/screens/FlavoursBaseScreen.dart';
 import 'package:drb/view/screens/MainScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -16,6 +17,9 @@ class HomeScreenController extends ControllerMVC{
       case 1:
         current = CategoryScreen(currentCatId: args);
         break;
+      // case 2:
+      //   current = FlavoursBaseScreen(product: args,);
+      //   break;
       default:
         current = MainScreen();
     }

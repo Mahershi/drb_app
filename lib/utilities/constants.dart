@@ -6,6 +6,7 @@ int tilesPerRow = 4;
 Color primaryColor = Colors.black;
 Color secondaryColor = Color(0xFFA9CCE3);
 Color primaryTextColor = Colors.red;
+Color secondaryTextColor = Colors.white;
 Color errorColor = Colors.red;
 
 const double head1 = 36;

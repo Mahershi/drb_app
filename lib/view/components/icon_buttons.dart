@@ -21,15 +21,20 @@ class CustomIconButton extends StatefulWidget{
 class PageState extends State<CustomIconButton>{
   @override
   Widget build(BuildContext context){
-    return Container(
-      decoration: BoxDecoration(
-        // border: testBorder
+    return InkWell(
+      onTap: (){
+        widget.onTap();
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          // border: testBorder
+        ),
+        child: Image.asset(
+          widget.iconPath,
+          color: widget.iconColor,
+          width: widget.iconSize,
+        )
       ),
-      child: Image.asset(
-        widget.iconPath,
-        color: widget.iconColor,
-        width: widget.iconSize,
-      )
     );
   }
 }

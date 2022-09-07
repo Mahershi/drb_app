@@ -30,7 +30,9 @@ class ProductMeta{
 
   ProductMeta.fromJson({jsonMap}){
     print("\nJSONMAP");
+    print(jsonMap);
     try{
+      this.id = jsonMap['id'].toString() ?? '';
       for(var inst in jsonMap['discount']){
         this.discounts.add(Discount.getById(id: inst['id'].toString()));
       }

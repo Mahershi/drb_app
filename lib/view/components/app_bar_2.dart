@@ -31,21 +31,23 @@ class PageState extends State<CustomAppBar2>{
               CustomIconButton(
                 iconPath: 'assets/img/search.png',
                 iconSize: appBarIconSize,
-                iconColor: primaryColor,
+                iconColor: secondaryColor,
                 onTap: (){},
               ),
               CustomSpacer(width: 30,),
               CustomIconButton(
                 iconPath: 'assets/img/bag.png',
                 iconSize: appBarIconSize,
-                iconColor: primaryColor,
-                onTap: (){},
+                iconColor: secondaryColor,
+                onTap: (){
+                  Navigator.of(context).pushNamed('/CartScreen');
+                },
               ),
               CustomSpacer(width: 30,),
               CustomIconButton(
                 iconPath: 'assets/img/setting.png',
                 iconSize: appBarIconSize,
-                iconColor: primaryColor,
+                iconColor: secondaryColor,
                 onTap: (){},
               ),
 

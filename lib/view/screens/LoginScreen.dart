@@ -30,7 +30,7 @@ class PageState extends StateMVC<LoginScreen>{
           decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.fill,
-                colorFilter: ColorFilter.mode(primaryColor.withOpacity(0.35), BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(secondaryColor.withOpacity(0.35), BlendMode.srcIn),
                 image: AssetImage('assets/img/smoke.png')
             )
           ),
@@ -41,7 +41,7 @@ class PageState extends StateMVC<LoginScreen>{
               Container(
                 padding: ei30,
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color: secondaryTextColor,
                   borderRadius: borderRadius20
                 ),
                 child: Form(
@@ -60,12 +60,15 @@ class PageState extends StateMVC<LoginScreen>{
                           },
                           decoration: InputDecoration(
                             hintText: 'User',
+                            hintStyle: font.merge(TextStyle(
+                                color: secondaryColor.withOpacity(0.5)
+                            )),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: primaryColor.withOpacity(0.3)),
+                              borderSide: BorderSide(color: primaryTextColor.withOpacity(0.3)),
                               borderRadius: borderRadius12
                             ),
                             focusedBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: primaryColor.withOpacity(0.8)),
+                                borderSide: BorderSide(color: primaryColor.withOpacity(1)),
                                 borderRadius: borderRadius12
                             ),
                             errorBorder: OutlineInputBorder(
@@ -79,6 +82,7 @@ class PageState extends StateMVC<LoginScreen>{
                       Container(
                         width: MediaQuery.of(context).size.width * 0.33,
                         child: TextFormField(
+                          obscureText: true,
                           validator: (value){
                             if(value!.isEmpty){
                               return "Password Required";
@@ -88,8 +92,11 @@ class PageState extends StateMVC<LoginScreen>{
                           controller: con!.password,
                           decoration: InputDecoration(
                             hintText: 'Password',
+                            hintStyle: font.merge(TextStyle(
+                              color: secondaryColor.withOpacity(0.5)
+                            )),
                             enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(color: primaryColor.withOpacity(0.3)),
+                                borderSide: BorderSide(color: secondaryColor.withOpacity(0.3)),
                                 borderRadius: borderRadius12
                             ),
                             focusedBorder: OutlineInputBorder(

@@ -40,7 +40,6 @@ class PageState extends StateMVC<CategoryBodyScreen>{
   @override
   Widget build(BuildContext context){
     print("Build Current Cat: " + widget.currentCatId);
-
     return Container(
       padding: eiTop20,
       width: MediaQuery.of(context).size.width - MediaQuery.of(context).size.width * navFraction,

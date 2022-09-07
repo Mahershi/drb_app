@@ -40,7 +40,7 @@ class PageState extends State<CategoryScreen>{
           Container(
             padding: eiTop40,
             decoration: BoxDecoration(
-              color: secondaryColor
+              color: primaryColor
             ),
             width: MediaQuery.of(context).size.width * navFraction,
             child: SideNav(currentCatId: widget.currentCatId,),

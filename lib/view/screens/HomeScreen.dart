@@ -30,7 +30,7 @@ class PageState extends StateMVC<HomeScreen>{
   Widget build(BuildContext context){
     return SafeArea(
       child: Scaffold(
-        backgroundColor: secondaryColor,
+        backgroundColor: primaryColor,
         body: Column(
           children: [
             Container(

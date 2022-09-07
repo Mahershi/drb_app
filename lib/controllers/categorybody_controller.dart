@@ -1,7 +1,7 @@
 import 'package:drb/models/product_meta_model.dart';
 import 'package:drb/utilities/global_vars.dart';
 import 'package:drb/view/components/custom_spacer.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../utilities/scripts.dart';

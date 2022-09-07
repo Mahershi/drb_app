@@ -31,7 +31,7 @@ class PageState extends StateMVC<SplashScreen>{
           decoration: BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.fill,
-                colorFilter: ColorFilter.mode(primaryColor.withOpacity(0.35), BlendMode.srcIn),
+                colorFilter: ColorFilter.mode(secondaryColor.withOpacity(0.35), BlendMode.srcIn),
                 image: AssetImage('assets/img/smoke.png')
             )
           ),
@@ -39,7 +39,8 @@ class PageState extends StateMVC<SplashScreen>{
           child: Text(
             "DRB",
             style: font.merge(TextStyle(
-                fontSize: head2
+                fontSize: head2,
+                color: primaryTextColor
             )),
           )
         ),

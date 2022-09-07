@@ -17,11 +17,14 @@ class Brand{
   }
 
   static dynamic getById({id}){
+    print("Get brand by id");
     for(var dis in GlobalVars.brands!){
+      print("Checking : " + dis.id!);
       if(dis.id == id){
         return dis;
       }
     }
+    print("null");
     return null;
   }
 }

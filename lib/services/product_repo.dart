@@ -36,3 +36,9 @@ Future<void> fetchOnSale({catId}) async {
       }
   );
 }
+
+Future<dynamic> getProduct({prod_id}) async{
+  return RestService.request(
+    endpoint: API.product + '/$prod_id',
+  );
+}
