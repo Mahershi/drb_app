@@ -1,5 +1,7 @@
 import 'package:drb/network/API.dart';
 import 'package:drb/network/rest_service.dart';
+import 'package:drb/services/cart_service.dart';
+import 'package:drb/utilities/global_vars.dart';
 
 Future<dynamic> login({username, password}) async{
   return RestService.request(
@@ -11,4 +13,9 @@ Future<dynamic> login({username, password}) async{
       'password': password
     }
   );
+}
+
+void logout(){
+  GlobalVars.currentUser = null;
+  MyCart.clearCart();
 }

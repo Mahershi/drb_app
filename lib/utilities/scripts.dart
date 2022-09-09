@@ -4,6 +4,9 @@ import 'package:drb/utilities/constants.dart';
 import 'package:drb/utilities/global_vars.dart';
 import 'package:drb/models/discount_model.dart';
 import 'package:flutter/material.dart';
+import 'package:drb/services/flavour_repo.dart' as fr;
+
+import '../view/components/loader.dart';
 
 class ParseParameters{
   static Map<String, Function> mapDict = {
@@ -106,5 +109,22 @@ class Scripts{
     print(qty);
 
     return [prices, qty];
+  }
+
+  static Map<String, dynamic> flavourFetchMap = {
+    '1': fr.fetchDisposable,
+    '2': fr.fetchJuice,
+    '3': fr.fetchPod
+  };
+
+  static void showLoader(context){
+    showDialog(
+        barrierColor: Colors.transparent,
+        barrierDismissible: false,
+        context: context,
+        builder: (context){
+          return Loader();
+        }
+    );
   }
 }

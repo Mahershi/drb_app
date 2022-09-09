@@ -1,6 +1,7 @@
 import 'package:drb/controllers/flavour_controller.dart';
 import 'package:drb/services/cart_service.dart';
 import 'package:drb/utilities/constants.dart';
+import 'package:drb/utilities/global_vars.dart';
 import 'package:drb/view/components/custom_spacer.dart';
 import 'package:drb/view/components/icon_buttons.dart';
 import 'package:flutter/material.dart';
@@ -12,13 +13,16 @@ import '../../models/product_meta_model.dart';
 class FlavourList extends StatefulWidget{
   List<Flavour> flavours;
   ProductMeta product;
+  bool static;
+  Function? refresh;
+  bool summaryView;
 
-  FlavourList({required this.flavours, required this.product});
+  FlavourList({required this.flavours, required this.product, this.static = false, this.refresh, this.summaryView = false});
   @override
   PageState createState() => PageState();
 }
 
-class PageState extends StateMVC<FlavourList>{
+class PageState extends StateMVC<FlavourList> with RouteAware{
   FlavourController? con;
   PageState() : super(FlavourController()){
     con = controller as FlavourController;
@@ -32,8 +36,28 @@ class PageState extends StateMVC<FlavourList>{
   }
 
   @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    GlobalVars.routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
+  }
+
+  @override
+  void dispose(){
+    GlobalVars.routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didPopNext(){
+    super.didPopNext();
+    setState(() { });
+  }
+
+  @override
   Widget build(BuildContext context){
     return ListView.builder(
+      shrinkWrap: widget.static,
+      physics: widget.static ? NeverScrollableScrollPhysics() : AlwaysScrollableScrollPhysics(),
       itemCount: widget.flavours.length,
       itemBuilder: (context, index){
         return Container(
@@ -53,15 +77,21 @@ class PageState extends StateMVC<FlavourList>{
               ),
               Row(
                 children: [
-                  CustomIconButton(
-                      iconPath: 'assets/img/minus.png',
-                      iconColor: Colors.black,
-                      iconSize: body1,
-                      onTap: (){
-                        MyCart.decreaseCount(product: widget.flavours[index].product_id!, flavour: widget.flavours[index]);
-                        con!.decreaseQt();
-                        setState((){});
-                      }
+                  Visibility(
+                    visible: !widget.summaryView,
+                    child: CustomIconButton(
+                        iconPath: 'assets/img/minus.png',
+                        iconColor: Colors.black,
+                        iconSize: body1,
+                        onTap: (){
+                          MyCart.decreaseCount(product: widget.flavours[index].product_id!, flavour: widget.flavours[index]);
+                          con!.decreaseQt();
+                          setState((){});
+                          if(widget.static){
+                            widget.refresh!();
+                          }
+                        }
+                    ),
                   ),
                   CustomSpacer(width: 20,),
                   Text(
@@ -71,15 +101,21 @@ class PageState extends StateMVC<FlavourList>{
                     )),
                   ),
                   CustomSpacer(width: 20,),
-                  CustomIconButton(
-                      iconPath: 'assets/img/add.png',
-                      iconColor: Colors.black,
-                      iconSize: body1,
-                      onTap: (){
-                        MyCart.increaseCount(product: widget.flavours[index].product_id!, flavour: widget.flavours[index]);
-                        con!.increaseQt();
-                        setState((){});
-                      }
+                  Visibility(
+                    visible: !widget.summaryView,
+                    child: CustomIconButton(
+                        iconPath: 'assets/img/add.png',
+                        iconColor: Colors.black,
+                        iconSize: body1,
+                        onTap: (){
+                          MyCart.increaseCount(product: widget.flavours[index].product_id!, flavour: widget.flavours[index]);
+                          con!.increaseQt();
+                          setState((){});
+                          if(widget.static){
+                            widget.refresh!();
+                          }
+                        }
+                    ),
                   )
                 ],
               )

@@ -33,10 +33,10 @@ Radius radius20 = Radius.circular(20);
 Radius radius30 = Radius.circular(30);
 
 
-EdgeInsets ei4 = EdgeInsets.all(12);
-EdgeInsets ei8 = EdgeInsets.all(12);
+EdgeInsets ei4 = EdgeInsets.all(4);
+EdgeInsets ei8 = EdgeInsets.all(8);
 EdgeInsets ei12 = EdgeInsets.all(12);
-EdgeInsets ei16 = EdgeInsets.all(12);
+EdgeInsets ei16 = EdgeInsets.all(16);
 EdgeInsets ei20 = EdgeInsets.all(20);
 EdgeInsets ei24 = EdgeInsets.all(24);
 EdgeInsets ei30 = EdgeInsets.all(30);

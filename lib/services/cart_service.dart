@@ -10,6 +10,10 @@ class MyCart{
 
   static CartModel cart = CartModel();
 
+  static void clearCart(){
+    products = {};
+  }
+
   static void printProducts(){
     print(products);
   }
@@ -77,11 +81,4 @@ class MyCart{
     }
   }
 
-  static void clean(){
-    products = {};
-  }
-
-  static show(){
-
-  }
 }

@@ -1,5 +1,6 @@
 import 'package:drb/controllers/categorybody_controller.dart';
 import 'package:drb/utilities/constants.dart';
+import 'package:drb/view/components/loader.dart';
 import 'package:drb/view/components/subcat_heading.dart';
 import 'package:drb/view/screens/ListScreen.dart';
 import 'package:flutter/material.dart';
@@ -48,12 +49,12 @@ class PageState extends StateMVC<CategoryBodyScreen>{
         color: Colors.white,
         borderRadius: BorderRadius.only(topLeft: radius30)
       ),
-      child: SingleChildScrollView(
+      child: con!.loaded ? SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: con!.children!
         ),
-      ),
+      )  : Loader(),
     );
   }
 }

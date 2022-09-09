@@ -18,4 +18,11 @@ class API{
   static String pod = '/pod';
   static String device = '/device';
   static String juice = '/juice';
+
+  static String get_disposable = disposable + '/get_disposable';
+  static String get_juice = juice + '/get_juice';
+  static String get_pod = pod + '/get_pod';
+
+  static String orders = '/orders';
+  static String place = orders + '/place/';
 }

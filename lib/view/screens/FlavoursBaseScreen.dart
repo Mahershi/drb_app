@@ -1,5 +1,7 @@
 import 'package:drb/controllers/flavourbase_controller.dart';
+import 'package:drb/view/components/coming_soon.dart';
 import 'package:drb/view/components/custom_spacer.dart';
+import 'package:drb/view/components/loader.dart';
 import 'package:drb/view/components/product_meta.dart';
 import 'package:drb/view/screens/FlavourGrid.dart';
 import 'package:drb/view/screens/FlavourList.dart';
@@ -131,9 +133,10 @@ class PageState extends StateMVC<FlavoursBaseScreen>{
                           ],
                         ),
                         CustomSpacer(height: 20,),
-                        Expanded(
+                        con!.loaded ? con!.flavours.isEmpty ? CommingSoon() : Expanded(
                           child: gridView ? FlavourList(flavours: con!.flavours, product: widget.product,) : FlavourList(flavours: con!.flavours, product: widget.product,)
                         )
+                            : Loader()
                       ],
                     ),
                   ),

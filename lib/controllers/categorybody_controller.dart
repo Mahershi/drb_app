@@ -11,6 +11,7 @@ import '../view/screens/ListScreen.dart';
 class CategoryBodyController extends ControllerMVC{
   String? catId;
   List<Widget>? children;
+  bool loaded = false;
 
   void init({catId}){
     this.catId = catId;
@@ -18,6 +19,8 @@ class CategoryBodyController extends ControllerMVC{
   }
 
   Future<void> fetchBody() async {
+    loaded = false;
+
     print("Body fetch");
     if(GlobalVars.show_new!){
       var data = await GlobalVars.repoMap['new'](catId: catId);
@@ -105,7 +108,9 @@ class CategoryBodyController extends ControllerMVC{
         children!.add(wid);
       }
     }
-    this.state!.setState(() { });
+    this.state!.setState(() {
+      loaded = true;
+    });
   }
 
 }

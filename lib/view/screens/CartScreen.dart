@@ -1,6 +1,8 @@
 import 'package:drb/controllers/cart_controller.dart';
 import 'package:drb/services/cart_service.dart';
+import 'package:drb/utilities/global_vars.dart';
 import 'package:drb/view/components/custom_spacer.dart';
+import 'package:drb/view/screens/CartBody.dart';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -12,7 +14,7 @@ class CartScreen extends StatefulWidget{
   PageState createState() => PageState();
 }
 
-class PageState extends StateMVC<CartScreen>{
+class PageState extends StateMVC<CartScreen> with RouteAware{
   CartController? con;
 
   PageState() : super(CartController()){
@@ -22,8 +24,31 @@ class PageState extends StateMVC<CartScreen>{
   @override
   void initState(){
     super.initState();
-    MyCart.show();
     con!.processCart();
+  }
+
+  @override
+  void didChangeDependencies(){
+    super.didChangeDependencies();
+    GlobalVars.routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
+  }
+
+  @override
+  void didPushNext(){
+    super.didPushNext();
+    GlobalVars.cartOpen = false;
+  }
+
+  @override
+  void didPopNext(){
+    super.didPopNext();
+    GlobalVars.cartOpen = false;
+  }
+
+  @override
+  void dispose(){
+    GlobalVars.routeObserver.unsubscribe(this);
+    super.dispose();
   }
 
   @override
@@ -35,7 +60,7 @@ class PageState extends StateMVC<CartScreen>{
           children: [
             Container(
                 padding: ei20,
-                child: CustomAppBar2()
+                child: CustomAppBar2(showCart: false,)
             ),
             Expanded(
               child: Row(
@@ -107,33 +132,48 @@ class PageState extends StateMVC<CartScreen>{
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
-                                      "\$ 40.00",
+                                      "\$ " + con!.subtotal.toStringAsFixed(2),
                                       style: font.merge(TextStyle(
                                         fontSize: body1,
+                                          letterSpacing: 1.1
+
                                         // fontWeight: FontWeight.w600
                                       )),
                                     ),
                                     CustomSpacer(height: 10,),
                                     Text(
-                                      "\$ 10.00",
+                                      "\$ " + con!.tax.toStringAsFixed(2),
                                       style: font.merge(TextStyle(
                                           fontSize: body1,
-                                          // fontWeight: FontWeight.w600
+                                          letterSpacing: 1.1
+
+                                        // fontWeight: FontWeight.w600
                                       )),
                                     ),
                                     CustomSpacer(height: 20,),
                                     Text(
-                                      '\$ 50.00',
+                                      '\$ ' + con!.total.toStringAsFixed(2),
                                       style: font.merge(TextStyle(
-                                        fontSize: head3,
-                                        fontWeight: FontWeight.w600
+                                        fontSize: head1,
+                                        fontWeight: FontWeight.w600,
+                                          letterSpacing: 1.1
+
                                       )),
                                     )
                                   ],
                                 )
                               ],
-                            )
+                            ),
+
+
+
                           ],
+                        ),
+                        CustomSpacer(height: 20,),
+                        con!.qty > 0? Expanded(
+                          child: CartBody(refresh: con!.refresh, placeOrder: con!.placeOrder,)
+                        ) : Container(
+                          child: Text("Empty")
                         )
                       ],
                     )

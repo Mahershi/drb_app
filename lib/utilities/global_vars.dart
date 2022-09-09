@@ -1,5 +1,6 @@
 import 'package:drb/controllers/homescreen_controller.dart';
 import 'package:drb/models/user_model.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../models/brand_model.dart';
 import '../models/category_model.dart';
@@ -9,6 +10,8 @@ import '../models/store_model.dart';
 import 'package:drb/services/product_repo.dart' as pr;
 
 class GlobalVars{
+  static final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+  static bool cartOpen = false;
   static List<Discount>? discounts;
   static List<Store>? stores;
   static Store? currentStore;

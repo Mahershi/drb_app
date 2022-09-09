@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:drb/models/flavour_model.dart';
 import 'package:drb/models/product_meta_model.dart';
 import 'package:drb/services/flavour_repo.dart';
@@ -7,6 +9,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 
 class FlavourBaseController extends ControllerMVC{
   List<Flavour> flavours = [];
+  bool loaded = false;
 
   Map<String, dynamic> catFetchMap = {
     '1': fetchDisposableFlavours,
@@ -16,15 +19,17 @@ class FlavourBaseController extends ControllerMVC{
 
 
   Future<void> getFlavours({ProductMeta? product}) async {
+    loaded = false;
     flavours = [];
-
 
     var resp = await catFetchMap[product!.category!.id!](productId: product!.id!, storeId: GlobalVars.currentStore!.id!);
     if(isSuccess(resp)){
       for(var inst in resp['data']){
         flavours.add(Flavour.fromJson(jsonMap: inst));
       }
-      this.state!.setState(() { });
+      this.state!.setState(() {
+        loaded = true;
+      });
 
     }
   }

@@ -37,7 +37,7 @@ class _Config {
 
   static const version = "1.0.0";
   static const api = '/app';
-  static const baseUrl = "http://10.69.164.177:9999";
+  static const baseUrl = "http://172.16.1.88:9999";
 
 
   static Config empty = Config(

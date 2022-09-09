@@ -1,3 +1,4 @@
+import 'package:drb/utilities/global_vars.dart';
 import 'package:drb/utilities/route_generator.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +18,7 @@ class DRB extends StatelessWidget{
       onGenerateRoute: RouteGenerator.generateRoute,
       debugShowCheckedModeBanner: false,
       initialRoute: '/SplashScreen',
+      navigatorObservers: [GlobalVars.routeObserver],
     );
   }
 }
